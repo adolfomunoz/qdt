@@ -1,0 +1,25 @@
+#include <iostream>
+#include <iomanip>
+#include <qdt/qdt.h>
+
+int main(int argc, char** argv) {
+	std::cout<<"Calculating PI as an integral over an infinite range"<<std::endl;
+	auto f = [] (double t) { return 1.0/(t*t + 1.0); };
+	std::cout<<"    Steps\tRectangle\tTrapezoid\tSimpson"<<std::endl;
+	for (unsigned int i = 100;i<=2000;i+=100)
+	{
+		auto rectangle = qdt::constant_step(i, qdt::Rectangle());
+		auto trapezoid = qdt::constant_step(i, qdt::Trapezoid());
+		auto simpsons  = qdt::constant_step(i, qdt::Simpson());
+		std::cout<<"      "<<std::setw(5)<<i<<"\t"<<std::setprecision(10)
+			<<rectangle.integrate(f, qdt::MINUS_INF, qdt::INF)<<"\t" 
+			<<trapezoid.integrate(f, qdt::MINUS_INF, qdt::INF)<<"\t" 
+			<<simpsons.integrate(f, qdt::MINUS_INF, qdt::INF)<<std::endl; 
+	}
+	std::cout<<"    Gauss-Kronrod"<<std::endl;
+	{
+		auto method = qdt::adaptive(qdt::GaussKronrod());
+		std::cout<<"      "<<std::setprecision(10)
+			<<method.integrate(f, qdt::MINUS_INF, qdt::INF)<<std::endl; 
+	}
+}
