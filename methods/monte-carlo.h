@@ -29,6 +29,13 @@ public:
 	}
 };
 
+MonteCarlo<> monte_carlo(unsigned int nsamples = 1)
+{
+	return MonteCarlo<>(nsamples);
+}
+
+
+
 };
 
 #endif
