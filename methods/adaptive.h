@@ -374,10 +374,18 @@ public:
 };
 
 template<typename BM>
-Adaptive<BM> adaptive(const BM& bm, float tol = 1.e-5, float min_step = 1.e-5)
+Adaptive<BM> adaptive(const BM& bm)
 {
-	return Adaptive<BM>(bm, tol, min_step);
+	return Adaptive<BM>(bm, 1.e-5, 1.e-10);
 }	
+
+template<typename BM>
+Adaptive<BM> adaptive(float tol, const BM& bm)
+{
+	return Adaptive<BM>(bm, tol, 1.e-10);
+}	
+
+
 
 
 
