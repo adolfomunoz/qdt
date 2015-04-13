@@ -41,7 +41,7 @@ All quadrature algorithms have a method `integrate` that integrates the provided
 auto method = qdt::constant_step(10, qdt::trapezoid());
 std::cout << method.integrate([] (float x) { return x*x; }, -1.0f, 1.0f)<<std::endl;
 ```
-would numerically integrate the square function in the range [-1,1] using 10 steps of the (trapezoid method)[http://en.wikipedia.org/wiki/Trapezoidal_rule].
+would numerically integrate the square function in the range [-1,1] using 10 steps of the Trapezoid rule.
 
 The `integrate` method also works on an infinite range. For instance the following line:
 ```
