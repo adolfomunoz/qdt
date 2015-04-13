@@ -79,6 +79,9 @@ public:
 };
 
 
+Romberg romberg(unsigned int order)
+{	return Romberg(order);	}
+
 };
 
 #endif

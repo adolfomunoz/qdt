@@ -9,9 +9,9 @@ int main(int argc, char** argv) {
 	std::cout<<"    Steps\tMonteCarlo\tRectangle\tTrapezoid\tSimpson"<<std::endl;
 	for (unsigned int i = 100;i<=2000;i+=100)
 	{
-		auto rectangle = qdt::constant_step(i, qdt::Rectangle());
-		auto trapezoid = qdt::constant_step(i, qdt::Trapezoid());
-		auto simpsons  = qdt::constant_step(i, qdt::Simpson());
+		auto rectangle = qdt::constant_step(i, qdt::rectangle());
+		auto trapezoid = qdt::constant_step(i, qdt::trapezoid());
+		auto simpsons  = qdt::constant_step(i, qdt::simpson());
 		auto mc	       = qdt::monte_carlo(i);
 		std::cout<<"      "<<std::setw(5)<<i<<"\t"<<std::setprecision(10)
 			<<mc.integrate(f, qdt::MINUS_INF, qdt::INF)<<"\t" 
@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
 	}
 	std::cout<<"    Gauss-Kronrod"<<std::endl;
 	{
-		auto method = qdt::adaptive(qdt::GaussKronrod());
+		auto method = qdt::adaptive(qdt::gauss_kronrod());
 		std::cout<<"      "<<std::setprecision(10)
 			<<method.integrate(f, qdt::MINUS_INF, qdt::INF)<<std::endl; 
 	}

@@ -18,6 +18,9 @@ public:
 	}
 };
 
+Trapezoid trapezoid()
+{	return Trapezoid();	}
+
 };
 
 #endif

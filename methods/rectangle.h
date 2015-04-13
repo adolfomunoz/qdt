@@ -18,6 +18,9 @@ public:
 	}
 };
 
+Rectangle rectangle()
+{	return Rectangle();	}
+
 };
 
 #endif

@@ -19,6 +19,9 @@ public:
 	}
 };
 
+Simpson simpson()
+{	return Simpson();	}
+
 };
 
 #endif

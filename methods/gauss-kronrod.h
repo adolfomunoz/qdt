@@ -102,6 +102,9 @@ public:
 	}
 };
 
+GaussKronrod gauss_kronrod()
+{	return GaussKronrod();	}
+
 };
 
 #endif
