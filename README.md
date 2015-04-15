@@ -28,15 +28,17 @@ Note that either the stepping or the adaptativeness of methods is reasonably sma
 ## Compiling the example
 There is an [example](https://github.com/adolfomunoz/qdt/blob/master/examples/qdt-pi.cc) that computes number pi as the arc tangent integral over the infinite range using different methods. It can be compiled with any C++11 compiler. We also provide a very simple `CMakeLists.txt` for CMake lovers. 
 
-The standard gcc compilation line would be
+You can clone the repository and compile the example (git + gcc) as follows:
 ```
-g++ --std=c++11 examples/qdt-pi.cc
+git clone https://github.com/adolfomunoz/qdt.git
+g++ --std=c++11 qdt/examples/qdt-pi.cc -o qdt-pi
 ```
 
 ## Usage
 You could first get inspired by the [example](https://github.com/adolfomunoz/qdt/blob/master/examples/qdt-pi.cc). Foryour code, you only need to include [qdt.h](https://github.com/adolfomunoz/qdt/blob/master/qdt.h). I pesonally have this in a `qdt` directory, so I just type `#include <qdt/qdt.h>` and that's it. There is no linkage, this is a header-only library.
 
 All quadrature algorithms have a method `integrate` that integrates the provided function along the specified range. For instance: 
+
 ```
 auto method = qdt::constant_step(10, qdt::trapezoid());
 std::cout << method.integrate([] (float x) { return x*x; }, -1.0f, 1.0f)<<std::endl;
@@ -45,7 +47,8 @@ would numerically integrate the square function in the range [-1,1] using 10 ste
 
 The `integrate` method also works on an infinite range. For instance the following line:
 ```
-std::cout << qdt::adaptive(1.e-6, qdt::gauss_kronrod()).integrate([] (double t) { return 1.0/(t*t + 1.0); }, qdt::MINUS_INF, qdt::INF) << std::endl;
+std::cout << qdt::adaptive(1.e-6, qdt::gauss_kronrod()).
+      integrate([] (double t) { return 1.0/(t*t + 1.0); }, qdt::MINUS_INF, qdt::INF) << std::endl;
 ```
 calculates the integral of a function along the infinte range, with an adaptive nested Gauss-Kronrod method with 1.e-6 tolerance. The result should be close to pi. Internally, this perform a change of variable. It is recommended to avoid any method that evaluates the boundaries of the range (such as Trapezoid or Simpsons rule).
 
@@ -57,9 +60,7 @@ auto stratified_adaptive    = qdt::constant_step(10, qdt::adaptive(1.e-6, qdt::s
 
 ## Disclaimer
 
-This is released under the GPLv2 licence. 
-
-In practice, if you use this code I'd like the following to happen:
+This code is released under the [GNU Public License V2 licence](https://www.gnu.org/licenses/gpl-2.0-standalone.html). In practice, if you use this code I'd like the following to happen:
 * Let me know that you are using it.
 * Let me know how can it be improved.
 * If it makes sense, cite my [paper](http://giga.cps.unizar.es/~amunoz/projects/CGF2014_higherorder/).
