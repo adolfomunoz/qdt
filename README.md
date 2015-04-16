@@ -60,7 +60,7 @@ auto stratified_adaptive    = qdt::constant_step(10, qdt::adaptive(1.e-6, qdt::s
 
 ## Disclaimer
 
-This code is released under the [GNU Public License V2 licence](https://www.gnu.org/licenses/gpl-2.0-standalone.html). In practice, if you use this code I'd like the following to happen:
+This code is released under the [GNU Public License V3 licence](http://www.gnu.org/licenses/gpl-3.0-standalone.html). In practice, if you use this code I'd like the following to happen:
 * Let me know that you are using it.
 * Let me know how can it be improved.
 * If it makes sense, cite my [paper](http://giga.cps.unizar.es/~amunoz/projects/CGF2014_higherorder/).
